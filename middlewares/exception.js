@@ -4,6 +4,11 @@ const catchError = async (ctx, next) => {
   try {
     await next();
   } catch (error) {
+    const isHttpException = error instanceof HttpException;
+    const isDev = global.config.environment === 'dev';
+    if(isDev && !isHttpException) {
+      throw error
+    }
     if(error instanceof HttpException) {
       ctx.body = {
         msg: error.msg,
@@ -11,6 +16,13 @@ const catchError = async (ctx, next) => {
         request: `${ctx.method} ${ctx.path}`
       }
       ctx.status = error.code
+    }else {
+      ctx.body = {
+        msg: 'we made a misstake 0(n_n)0~~',
+        error_code: 999,
+        request: `${ctx.method} ${ctx.path}` 
+      }
+      ctx.status = 500
     }
 
     // error 堆栈调用信息
