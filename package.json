@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "basic-auth": "^2.0.1",
+    "bcrypt": "^4.0.1",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.4.0",
     "koa": "^2.7.0",
@@ -15,6 +16,7 @@
     "lodash": "^4.17.11",
     "module-alias": "^2.2.0",
     "mysql2": "^1.6.5",
+    "node-pre-gyp": "^0.14.0",
     "nodemon": "^1.19.2",
     "npm-check": "^5.9.0",
     "require-directory": "^2.1.1",
