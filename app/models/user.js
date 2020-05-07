@@ -1,23 +1,21 @@
 const bcrypt = require('bcryptjs')
+const { Model, DataTypes } = require('sequelize')
 const { sequelize } = require('../../core/db')
 
-const { Sequelize, Model } = require('sequelize')
 
-class User extends Model {
-
-}
+class User extends Model {}
 
 User.init({
   // 主键   关系数据库
   id: {
-    type: Sequelize.INTEGER,
+    type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  nickname: Sequelize.STRING,
-  email: Sequelize.STRING,
+  nickname: DataTypes.STRING,
+  email: DataTypes.STRING,
   password: { 
-    type: Sequelize.STRING,
+    type: DataTypes.STRING,
     set(val) {
       const salt = bcrypt.genSaltSync(10);
       const psw = bcrypt.hashSync(val, salt);
@@ -25,12 +23,13 @@ User.init({
     }
   },
   openid: {
-    type: Sequelize.STRING(64),
+    type: DataTypes.STRING(64),
     unique: true
   }
 },{ 
   sequelize,
-  tableName: 'user' 
+  modelName: 'user' 
+  // tableName: 'user' 
 })
 
 module.exports = {

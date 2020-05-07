@@ -1,7 +1,7 @@
 {
   "name": "island",
   "version": "1.0.0",
-  "description": "7七月的微信公众号：林间有风",
+  "description": "zhonglh 旧岛实战",
   "main": "app.js",
   "dependencies": {
     "axios": "^0.18.0",
@@ -14,6 +14,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "lodash": "^4.17.11",
+    "mddir": "^1.1.1",
     "module-alias": "^2.2.0",
     "mysql2": "^1.6.5",
     "node-pre-gyp": "^0.14.0",
@@ -37,7 +38,7 @@
   "keywords": [
     "island"
   ],
-  "author": "7yue",
+  "author": "zhonglh",
   "license": "MIT",
   "devDependencies": {},
   "_moduleAliases": {
