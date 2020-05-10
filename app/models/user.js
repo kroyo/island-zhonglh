@@ -1,9 +1,27 @@
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 const { Model, DataTypes } = require('sequelize')
 const { sequelize } = require('../../core/db')
 
 
-class User extends Model {}
+class User extends Model {
+  static async verifyEmailPassword(email, plainPassword) {
+    const user = await User.findOne({
+      where: {
+        email
+      }
+    })
+    if(!user) {
+      throw new global.errs.NotFound('用户不存在')
+    }
+    // user.password === plainPassword
+    const corrent = bcrypt.compareSync(plainPassword, user.password);
+    console.log(plainPassword, user.password, corrent)
+    if(!corrent) {
+      throw new global.errs.AuthFailed('密码不正确')
+    }
+    return user
+  }
+}
 
 User.init({
   // 主键   关系数据库
