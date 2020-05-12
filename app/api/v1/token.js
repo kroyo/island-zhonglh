@@ -27,7 +27,7 @@ router.post('/', async (ctx) => {
   }
 })
 
-async function emailLogin(account, secret) {
+async function emailLogin(account, secret) { 
   const user = await User.verifyEmailPassword(account, secret);
   return token = generateToken(user.id, 2)
 }
