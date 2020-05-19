@@ -17,4 +17,5 @@ learn
 tokens.json
 app/assets
 
+island/config/config.js
 miniprogram_npm/
