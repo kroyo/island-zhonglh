@@ -1,4 +1,6 @@
 const util = require('util')
+const axios = require('axios')
+
 const { User } = require('../models/user')
 const { generateToken } = require('../../core/util')
 const { Auth } = require('../../middlewares/auth')
@@ -13,9 +15,11 @@ class WXManager {
     if(result.status !== 200) {
       throw new global.errs.AuthFailed('openid获取失败');
     }
-    const errCode = result.data.errCode;
-    if(errCode !== 0) {
-      throw new global.errs.AuthFailed('openid获取失败'+ errCode);
+    const errcode = result.data.errcode;
+    const errmsg = result.data.errmsg;
+    console.log(result)
+    if(errcode !== 0) {
+      throw new global.errs.AuthFailed('openid获取失败'+ errcode);
     }
 
     const user = await User.getUserByOpenid(result.data.openid);
@@ -24,4 +28,8 @@ class WXManager {
     }
     return generateToken(user.id, Auth.USER)
   }
+}
+
+module.exports = {
+  WXManager
 }

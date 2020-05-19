@@ -16,3 +16,5 @@ dist
 learn
 tokens.json
 app/assets
+
+miniprogram_npm/

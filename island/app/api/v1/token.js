@@ -20,7 +20,7 @@ router.post('/', async (ctx) => {
       token = await emailLogin(v.get('body.account'), v.get('body.secret'))
       break;
     case LoginType.USER_MINI_PROGRAM:
-      token = await WXManager.codeToken(v.get('body.account'));
+      token = await WXManager.codeToToken(v.get('body.account'));
       break;
     default:
       throw new global.errs.ParameterException('没有相应的处理函数'); 
