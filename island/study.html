@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  let me = {
+    name: 'Kyle'
+  };
+  function identify(context) {
+    console.log(context === me);
+    context.sex = '男';
+    return context.name.toUpperCase();
+  }
+  console.log(identify(me));
+  console.log(me)
+
+  function speak(context) {
+    context = '那么';
+    console.log(context)
+  }
+  speak(me.name)
+  console.log(me)
+</script>
+<script>
+  var a = 'begin';
+  function baz(){
+    var a = 'baz';
+    console.log('baz');
+    console.log(this.a);
+    bar();
+  }
+  function bar(){
+    var a = 'bar';
+    console.log('bar');
+    console.log(this.a);
+    foo();
+  }
+  function foo(){
+    var a = 'foo';
+    console.log('foo');
+    console.log(this.a);
+  }
+  baz();
+</script>
+</html>
