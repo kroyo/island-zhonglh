@@ -8,7 +8,7 @@ const { Auth } = require('../../middlewares/auth')
 class WXManager {
   static async codeToToken(code) {
     const url = util.format(global.config.wx.loginUrl, 
-      global.config.wx.appId,
+      global.config.wx.appID,
       global.config.wx.appSecret,
       code);
     const result = await axios.get(url);
@@ -17,9 +17,8 @@ class WXManager {
     }
     const errcode = result.data.errcode;
     const errmsg = result.data.errmsg;
-    console.log(result)
-    if(errcode !== 0) {
-      throw new global.errs.AuthFailed('openid获取失败'+ errcode);
+    if(errcode) {
+      throw new global.errs.AuthFailed('openid获取失败'+ errmsg);
     }
 
     const user = await User.getUserByOpenid(result.data.openid);
