@@ -15,6 +15,11 @@ const obj1 = {
 const obj2 = deepClone(obj1);
 obj2.address.city = 'shanghai';
 console.log(obj1.address.city)
+
+const arr1 = [1,2,3,4];
+const arr2 = deepClone(arr1);
+arr2.push(5);
+console.log(arr1)
  
 function deepClone(obj = {}) {
   if(typeof obj != 'object' || obj == null) {
