@@ -33,15 +33,24 @@ class Teacher extends People {
 
 // 实例
 const xialuo = new Student('夏洛', 100)
-console.log(xialuo.name)
-console.log(xialuo.number)
-xialuo.sayHi()
-xialuo.eat()
+console.log(xialuo.name)    // 夏洛
+console.log(xialuo.number)  // 100
+xialuo.sayHi()              // 姓名 夏洛 学号 100
+xialuo.eat()                // 夏洛 eat something
 
 // 实例
 const wanglaoshi = new Teacher('王老师', '语文')
-console.log(wanglaoshi.name)
-console.log(wanglaoshi.major)
-wanglaoshi.teach()
-wanglaoshi.eat()
+console.log(wanglaoshi.name)   // 王老师
+console.log(wanglaoshi.major)  // 语文
+wanglaoshi.teach()             // 王老师 教授 语文
+wanglaoshi.eat()               // 王老师 eat something
+
+
+// class 实际上是函数，可见是语法糖
+typeof People  // function
+typeof Student // function
+
+console.log( xialuo.__proto__ )
+console.log( Student.prototype )
+console.log( xialuo.__proto__ === Student.prototype )
 
