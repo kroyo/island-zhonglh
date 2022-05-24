@@ -1,7 +1,7 @@
 {
   "name": "island",
   "version": "1.0.0",
-  "description": "zhonglh 旧岛实战",
+  "description": "zhonglh 新旧岛实战",
   "main": "app.js",
   "dependencies": {
     "axios": "^0.18.0",
