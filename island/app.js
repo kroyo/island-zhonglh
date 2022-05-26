@@ -9,7 +9,7 @@ const app = new Koa()
 app.use(catchError)
 app.use(parser())
 
-// process.cwd()
+// 初始化管理器
 InitManager.initCore(app)
 
 app.listen(3000)

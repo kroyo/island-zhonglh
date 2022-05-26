@@ -9,17 +9,17 @@ const catchError = async (ctx, next) => {
     if(isDev && !isHttpException) {
       throw error
     }
-    if(error instanceof HttpException) {
+    if(isHttpException) {
       ctx.body = {
         msg: error.msg,
-        error_code: error.errorCode,
+        errorCode: error.errorCode,
         request: `${ctx.method} ${ctx.path}`
       }
       ctx.status = error.code
     }else {
       ctx.body = {
         msg: 'we made a misstake 0(n_n)0~~',
-        error_code: 999,
+        errorCode: 999,
         request: `${ctx.method} ${ctx.path}` 
       }
       ctx.status = 500
@@ -30,7 +30,7 @@ const catchError = async (ctx, next) => {
     // HTTP Status Code 2xx, 4xx, 5xx
     // ctx.body = '服务器有点问题，你等一下。';
     // message
-    // error_code 详细， 开发者自己定义  10001 20003
+    // errorCode 详细， 开发者自己定义  10001 20003
 
     // 已知型错误  param  int ‘abc’ Lin ， 已知 
     // 处理错误， 明确
