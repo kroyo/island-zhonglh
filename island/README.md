@@ -38,5 +38,3 @@
     |-- middlewares
         |-- exception.js
 ```
-
-// http://bl.7yue.pro/dev/index.html

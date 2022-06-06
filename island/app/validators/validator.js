@@ -2,6 +2,7 @@ const { LinValidator, Rule } = require('../../core/lin-validator-v2')
 const { User } = require('../models/user')
 const { LoginType } = require('../lib/enum')
 
+// 只支持且关系，或关系需要使用自定义函数
 class PositiveIntergerValidator extends LinValidator {
   constructor(params) {
     super();

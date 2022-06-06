@@ -12,6 +12,8 @@
   - [x] `requireDirectory`
   - [x] `Koa-router`
   - [x] `LinValidator`
+  - [x] `LinCMS`: https://doc.cms.talelin.com/server/koa/
+  - [x] `validator` : https://github.com/validatorjs/validator.js
 
 #### 知识点
   - 深入JS异常处理与异步异常

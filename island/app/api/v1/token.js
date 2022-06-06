@@ -14,6 +14,7 @@ const router = new Router({
 
 router.post('/', async (ctx) => {
   const v = await new TokenValidator().validate(ctx);
+  // v.get('body.type') get形式获取参数 不需要判断是否存在这个参数（lodash方法）  
   let token;
   switch (v.get('body.type')) {
     case LoginType.USER_EMAIL:

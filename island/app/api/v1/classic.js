@@ -10,6 +10,7 @@ const router = new Router({
 router.get('/latest', new Auth().m, async (ctx, next) => {
   // 权限
   ctx.body = ctx.auth;
+  const v = new PositiveIntergerValidator().validate(ctx)
 })
 
 module.exports = router

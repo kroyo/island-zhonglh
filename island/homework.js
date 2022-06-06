@@ -28,29 +28,44 @@ class C extends B {
   }
 }
 
-function findMembers(instance, fieldPrefix, funcPrefix) {
+// function findMembers(instance, fieldPrefix, funcPrefix) {
 
-  // 递归函数
-  function _find(instance) {
-    //基线条件（跳出递归）
-    if (instance.__proto__ === null)
+//   // 递归函数
+//   function _find(instance) {
+//     //基线条件（跳出递归）
+//     if (instance.__proto__ === null)
+//       return []
+
+//     let names = Reflect.ownKeys(instance)
+//     names = names.filter((name) => {
+//       // 过滤掉不满足条件的属性或方法名
+//       return _shouldKeep(name)
+//     })
+
+//     return [...names, ..._find(instance.__proto__)]
+//   }
+
+//   function _shouldKeep(value) {
+//     if (value.startsWith(fieldPrefix) || value.startsWith(funcPrefix))
+//       return true
+//   }
+
+//   return _find(instance)
+// }
+
+function findMembers(node, protypeName, funcName) {
+  const find = (instance) => {
+    // 判断是否还有上级节点
+    if (instance.__proto__ === null) {
       return []
-
+    }
     let names = Reflect.ownKeys(instance)
-    names = names.filter((name) => {
-      // 过滤掉不满足条件的属性或方法名
-      return _shouldKeep(name)
+    names = names.filter(name => {
+      return name.startsWith(protypeName) || name.startsWith(funcName)
     })
-
-    return [...names, ..._find(instance.__proto__)]
+    return [...names, ...find(instance.__proto__)]
   }
-
-  function _shouldKeep(value) {
-    if (value.startsWith(fieldPrefix) || value.startsWith(funcPrefix))
-      return true
-  }
-
-  return _find(instance)
+  return find(node)
 }
 
 
