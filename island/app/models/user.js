@@ -42,20 +42,22 @@ User.init({
   // 主键   关系数据库
   id: {
     type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
+    primaryKey: true, // 主键
+    autoIncrement: true // 自动增长
   },
   nickname: DataTypes.STRING,
   email: DataTypes.STRING,
   password: { 
+    // 扩展 设计模式-观察者模式
     type: DataTypes.STRING,
     set(val) {
       const salt = bcrypt.genSaltSync(10);
       const psw = bcrypt.hashSync(val, salt);
+      // Model的setDataValue方法
       this.setDataValue('password', psw);
     }
   },
-  openid: {
+  openid: { // 微信小程序openid
     type: DataTypes.STRING(64),
     unique: true
   }

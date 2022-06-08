@@ -33,6 +33,7 @@ class RegisterValidator extends LinValidator {
       })
     ]
   }
+  // 自定义校验
   validatePassword(vals) {
     const psw1 = vals.body.password1;
     const psw2 = vals.body.password2;
@@ -53,6 +54,7 @@ class RegisterValidator extends LinValidator {
   }
 }
 
+// token令牌校验
 class TokenValidator extends LinValidator {
   constructor(params) {
     super();
