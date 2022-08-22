@@ -9,7 +9,7 @@
   "author": "zhonglh",
   "license": "ISC",
   "dependencies": {
-    "js-base64": "^2.5.1",
+    "js-base64": "^2.6.4",
     "lin-ui": "^0.4.0"
   }
 }

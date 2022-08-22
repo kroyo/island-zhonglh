@@ -7,11 +7,10 @@ const { Auth } = require('../../middlewares/auth')
 
 class WXManager {
   static async codeToToken(code) {
-    const url = util.format(global.config.wx.loginUrl, 
-      global.config.wx.appID,
-      global.config.wx.appSecret,
-      code);
+    const { loginUrl, appID, appSecret } = global.config.wx
+    const url = util.format(loginUrl, appID, appSecret, code);
     const result = await axios.get(url);
+    console.log(">>", result.data)
     if(result.status !== 200) {
       throw new global.errs.AuthFailed('openid获取失败');
     }

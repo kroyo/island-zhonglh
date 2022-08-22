@@ -30,7 +30,7 @@ function whenLoadModule(obj) {
   }
 }
 ```
-##### 3. 获取绝对路径
+##### 3. 获取绝对路径 
 ```
 process.cwd()
 ```
@@ -301,8 +301,7 @@ const generateToken = function(uid, scope){
     },secretKey,{
         expiresIn
     })
-    return token
-}
+    return 
 
 // 校验令牌
 try {
