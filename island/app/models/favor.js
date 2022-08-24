@@ -1,9 +1,10 @@
 const { sequelize } = require('../../core/db')
-const { Sequelize, Model } = require('sequelize')
+const { Sequelize, Model, Op } = require('sequelize')
 const { Art } = require('./art')
 
 class Favor extends Model {
   // 业务表
+  // 点赞
   static async like(art_id, type, uid) {
     // 1. 添加记录
     // 2.classic fav_nums
@@ -24,10 +25,11 @@ class Favor extends Model {
         type,
         uid
       }, {transaction: t})
-      const art = await Art.getData(art_id, type)
+      const art = await Art.getData(art_id, type, false)
       await art.increment('fav_nums', { by: 1, transaction: t})
     })
   }
+  // 取消点赞
   static async dislike(art_id, type, uid) {
     const favor = await Favor.findOne({
       where: {
@@ -46,10 +48,11 @@ class Favor extends Model {
         force:true, 
         transaction: t
       })
-      const art = await Art.getData(art_id, type)
+      const art = await Art.getData(art_id, type, false)
       await art.decrement('fav_nums', { by: 1, transaction: t})
     })
   }
+  // 判断这个期刊是否有点赞
   static async userLikeIt(art_id, type, uid) {
     const favor = await Favor.findOne({
       where: {
@@ -59,6 +62,24 @@ class Favor extends Model {
       }
     })
     return favor ? true : false
+  }
+
+  // 获取我喜欢的所有期刊
+  static async getMyClassicFavor(uid) {
+    const arts = await Favor.findAll({
+      where: {
+        uid,
+        type: {
+          [Op.not]: 400
+        }
+      }
+    })
+
+    if (!arts) {
+      throw new global.errs.NotFound()
+    }
+
+    return await Art.getList(arts)
   }
 }
 

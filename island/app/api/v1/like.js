@@ -10,6 +10,7 @@ const router = new Router({
   prefix: '/v1/like' 
 })
 
+// 点赞期刊
 //  Class constructor LikeValidator cannot be invoked without 'new'
 router.post('/', new Auth().m, async (ctx, next) => {
   const v = await new LikeValidator().validate(ctx, {id: 'art_id'})
@@ -17,10 +18,13 @@ router.post('/', new Auth().m, async (ctx, next) => {
   success()
 })
 
+// 取消点赞
 router.post('/cancel', new Auth().m, async (ctx, next) => {
   const v = await new LikeValidator().validate(ctx, {id: 'art_id'})
   await Favor.dislike(v.get('body.art_id'), v.get('body.type'), ctx.auth.uid)
   success()
 })
+
+//  
 
 module.exports = router
