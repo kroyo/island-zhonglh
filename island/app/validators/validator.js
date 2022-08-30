@@ -48,7 +48,7 @@ class RegisterValidator extends LinValidator {
         email: email
       }
     });
-    if(user) {
+    if (user) {
       throw new Error('email已存在')
     }
   }
@@ -75,10 +75,10 @@ class TokenValidator extends LinValidator {
     ]
   }
   validateLoginType(vals) {
-    if(!vals.body.type) {
+    if (!vals.body.type) {
       throw new Error('type是必须参数')
     }
-    if(!LoginType.isThisType(vals.body.type)) {
+    if (!LoginType.isThisType(vals.body.type)) {
       throw new Error('type参数不合法')
     }
   }
@@ -88,7 +88,7 @@ class NotEmptyValidator extends LinValidator {
   constructor() {
     super();
     this.token = [
-      new Rule('isLength', '不允许为空', {min:1})
+      new Rule('isLength', '不允许为空', { min: 1 })
     ]
   }
 }
@@ -132,7 +132,46 @@ class LikeValidator extends PositiveIntegerValidator {
   }
 }
 
-class ClassicValidator extends LikeValidator {}
+class ClassicValidator extends LikeValidator { }
+
+class SearchValidator extends LinValidator {
+  constructor() {
+    super()
+    this.q = [
+      new Rule('isLength', '搜索关键词不能为空', {
+        min: 1,
+        max: 16
+      })
+    ]
+    this.start = [
+      new Rule('isInt', '不符合规范', {
+        min: 0,
+        max: 60000
+      }),
+      new Rule('isOptional', '', 0)
+    ]
+    this.count = [
+      new Rule('isInt', '不符合规范', {
+        min: 1,
+        max: 20
+      }),
+      new Rule('isOptional', '', 20)
+    ]
+
+  }
+}
+
+class AddShortCommentValidator extends PositiveIntegerValidator {
+  constructor() {
+    super()
+    this.content = [
+      new Rule('isLength', '必须在1到12个字符之间', {
+        min: 1,
+        max: 12
+      })
+    ]
+  }
+}
 
 module.exports = {
   PositiveIntegerValidator,
@@ -140,5 +179,7 @@ module.exports = {
   TokenValidator,
   NotEmptyValidator,
   LikeValidator,
-  ClassicValidator
+  ClassicValidator,
+  SearchValidator,
+  AddShortCommentValidator
 }

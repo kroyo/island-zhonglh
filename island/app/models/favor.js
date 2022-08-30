@@ -1,6 +1,7 @@
 const { sequelize } = require('../../core/db')
 const { Sequelize, Model, Op } = require('sequelize')
 const { Art } = require('./art')
+const { ArtType } = require('../lib/enum')
 
 class Favor extends Model {
   // 业务表
@@ -64,13 +65,33 @@ class Favor extends Model {
     return favor ? true : false
   }
 
+  static async getBookFavor(uid, bookId) {
+    const favorNums = await Favor.count({
+      where: {
+        art_id: bookId,
+        type: ArtType.BOOK
+      }
+    })
+    const myFavor = await Favor.findOne({
+      where: {
+        art_id: bookId,
+        uid,
+        type: 400
+      }
+    })
+    return {
+      fav_nums: favorNums,
+      like_status: myFavor ? 1 : 0
+    }
+  }
+
   // 获取我喜欢的所有期刊
   static async getMyClassicFavor(uid) {
     const arts = await Favor.findAll({
       where: {
         uid,
         type: {
-          [Op.not]: 400
+          [Op.not]: ArtType.BOOK
         }
       }
     })
