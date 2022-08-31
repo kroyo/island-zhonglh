@@ -1,5 +1,4 @@
 const { Movie, Music, Sentence } = require('./classic')
-const { Book } = require('./book')
 const { ArtType } = require('../lib/enum')
 
 class Art {
@@ -11,8 +10,7 @@ class Art {
   static artTypeObj = {
     [ArtType.MOVIE]: Movie,
     [ArtType.MUSIC]: Music,
-    [ArtType.SENTENCE]: Sentence,
-    [ArtType.BOOK]: Book,
+    [ArtType.SENTENCE]: Sentence
   }
 
   // 获取期刊详情
@@ -31,6 +29,7 @@ class Art {
 
   // 根据favor表中的信息获取期刊的详细数据 - 单个
   static async getData(art_id, type, useScope = true) {
+    const { Book } = require('./book')
     let art = null
     const finder = {
       where: {

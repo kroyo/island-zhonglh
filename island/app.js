@@ -7,7 +7,7 @@ const InitManager = require('./core/init')
 const catchError = require('./middlewares/exception')
 const static = require('koa-static')
 
-require('./app/models/user')
+require('./app/models/classic')
 
 const app = new Koa()
 app.use(catchError)

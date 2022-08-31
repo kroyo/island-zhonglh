@@ -1,9 +1,9 @@
 const axios = require('axios')
 const util = require('util')
-const { Sequelize, Model, Op } = require('sequelize')
+const { Sequelize, Model } = require('sequelize')
 
 const { sequelize } = require('../../core/db')
-const { Favor } = require('./favor')
+const { Favor } = require('@models/favor')
 
 class Book extends Model {
   static async add(data) {
@@ -18,12 +18,12 @@ class Book extends Model {
     if (!detail) {
       throw new global.errs.NotFound()
     }
-    console.log('>>>detail', detail)
     return detail
   }
 
   static async getMyFavorBookCount(uid) {
-    const count = await Favor.findOne({
+    console.log('>>>Favor', Favor)
+    const count = await Favor.count({
       where: {
         type: 400,
         uid
