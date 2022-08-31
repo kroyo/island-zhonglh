@@ -1,16 +1,18 @@
 const { Movie, Music, Sentence } = require('./classic')
+const { Book } = require('./book')
 const { ArtType } = require('../lib/enum')
 
 class Art {
   constructor(art_id, type) {
     this.art_id = art_id
-    this.type= type
+    this.type = type
   }
   // 全局静态变量
   static artTypeObj = {
     [ArtType.MOVIE]: Movie,
     [ArtType.MUSIC]: Music,
-    [ArtType.SENTENCE]: Sentence
+    [ArtType.SENTENCE]: Sentence,
+    [ArtType.BOOK]: Book,
   }
 
   // 获取期刊详情
@@ -38,6 +40,14 @@ class Art {
     const scope = useScope ? 'bh' : null
     if (this.artTypeObj[type]) {
       art = await this.artTypeObj[type].scope(scope).findOne(finder)
+      // book独立处理
+      if (ArtType.BOOK == type) {
+        if (!art) {
+          art = await Book.create({
+            id: art_id
+          })
+        }
+      }
     }
     return art
   }
@@ -46,7 +56,7 @@ class Art {
     let artList = []
     // 先根据分类做数据区分
     const artInfoObj = {}
-    for(let art of arts) {
+    for (let art of arts) {
       !artInfoObj[art.type] && (artInfoObj[art.type] = [])
       artInfoObj[art.type].push(art.art_id)
     }
