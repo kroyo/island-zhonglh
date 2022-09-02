@@ -1,0 +1,7 @@
+<view class="classic-container  {{ isMusic?'music-container':'' }}">
+  <image class="classic-img {{isMusic?'music-img':'' }} {{isMusic&&playing?'rotation':''}}" src="{{img}}" />
+  <image wx:if="{{isMusic}}" class="player-img" bind:tap="onPlay" 
+      src="{{!playing?playSrc:pauseSrc}}" />
+  <image class="tag {{ isMusic?'music-tag':'' }}" src="images/{{imgType}}@tag.png" />
+  <text class="content">{{content}}</text>
+</view>

@@ -137,23 +137,8 @@ Page({
     wx.request({
       url: 'http://localhost:3000/v1/book/add',
       method: 'POST',
-      data:{
-        "author": '["[美]保罗·格雷厄姆"]',
-        "binding": "平装",
-        "category": "编程",
-        "id": 7,
-        "image": "https://img3.doubanio.com/lpic/s4669554.jpg",
-        "images": '{"large": "https://img3.doubanio.com/lpic/s4669554.jpg"}',
-        "isbn": "9787115249494",
-        "pages": "264",
-        "price": "49.00元",
-        "pubdate": "2011-4",
-        "publisher": "人民邮电出版社",
-        "subtitle": "硅谷创业之父Paul Graham文集",
-        "summary": "本书是硅谷创业之父Paul Graham 的文集，主要介绍黑客即优秀程序员的爱好和动机，讨论黑客成长、黑客对世界的贡献以及编程语言和黑客工作方法等所有对计算机时代感兴趣的人的一些话题。书中的内容不但有助于了解计算机编程的本质、互联网行业的规则，还会帮助读者了解我们这个时代，迫使读者独立思考。\\n本书适合所有程序员和互联网创业者，也适合一切对计算机行业感兴趣的读者。",
-        "title": "黑客与画家",
-        "translator": '["阮一峰"]'
-      },
+      data:{"author":'["[日]新井一二三"]',"binding":"平装","category":"美食","id":51664,"image":"https://img3.doubanio.com/lpic/s29034294.jpg","images":'{"large":"https://img3.doubanio.com/lpic/s29034294.jpg"}',"isbn":"9787544762069","pages":"306","price":"39.00","pubdate":"2016-10","publisher":"译林出版社","subtitle":"","summary":"日本料理就是寿司、刺身、寿喜烧？其实酱酱烧、秋刀鱼昆布卷、熏烤鲣鱼等等也是不可多得的美味。日本人的便当有什么学问？日本人说“饺子”时是山东口音？翡冷翠的牛排、绿皮火车上的年夜饭、新疆绿洲的拉条子，跟这位日本“女汉子”又有怎样的情缘？\\n寻常一餐饭，总有不寻常的人情故事和文化趣谈。\\n《东京时味记》是日本女作家新井一二三的同名美食专栏首次结集。她说：“旅行与美食密不可分，还有阅读。”所以这次这个喜欢独立旅行的女子用八十四种美食带你去体验普通日本人家的餐桌风景，开启一段难忘的味觉之旅。","title":"东京时味记","translator":'[]'}
+      ,
       success: res => {
         console.log(res.data)
       },

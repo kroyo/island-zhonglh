@@ -18,4 +18,5 @@ tokens.json
 app/assets
 
 island/config/config.js
+island-mini/project.config.json
 miniprogram_npm/
