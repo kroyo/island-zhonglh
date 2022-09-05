@@ -29,6 +29,14 @@ Component({
     },
   },
   methods: {
-    onLike() {}
+    onLike() {
+      let { like, count } = this.properties
+      count = like ? count - 1 : count + 1
+      this.setData({
+        count,
+        like: !like
+      })
+      this.triggerEvent('like', { behavior: !like ? 'like' : 'cancel' })
+    }
   },
 });

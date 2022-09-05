@@ -1,4 +1,5 @@
 import { getLatest, getNextOrPrevious } from '../../api/classic'
+import { like, cancel } from '../../api/like'
 
 Page({
   data: {
@@ -77,6 +78,18 @@ Page({
         latest: res.index === latest,
         first: res.index === 1,
       })
+    })
+  },
+  // 取消、添加收藏
+  onLike(event) {
+    const featch = event.detail.behavior == 'like' ? like : cancel
+    const params = {
+      art_id: this.data.classic.id,
+      type: this.data.classic.type
+    }
+    console.log(event, params)
+    featch(params).then(res => {
+      console.log(res)
     })
   }
 });
